@@ -8,11 +8,13 @@ import tarea2.progra2.exceptions.NoHayBebidaException;
 public class Expendedor {
    int precios[];
    int capacidad;
+   DepositoMonedas vuelto;
    ArrayList<Deposito> depositos;
    public Expendedor (int capacidad, int precios[]) {
       this.precios = precios;
       this.capacidad = capacidad;
       this.depositos = new ArrayList<Deposito>();
+      vuelto =  new DepositoMonedas();
       Deposito d = null;
       Bebida b = null;
       for (int i=0;i<3;++i) {
@@ -38,8 +40,10 @@ public class Expendedor {
             Bebida b = depositos.get(tipo).getBebida();
             if (b == null || tipo < 0 || 2 < tipo) {
                throw new NoHayBebidaException();
-            } else {
-               return b;
+            }
+            Moneda c = new Moneda100();
+            for(int i=precios[tipo]/100; i<m.getValor()/100; i++){
+                vuelto.addMoneda(c);
             }
          }
          else if (m.getValor() < precios[tipo]) {
@@ -52,5 +56,9 @@ public class Expendedor {
       catch (NoHayBebidaException ex) {
          return null;
       }
+       return null; //This might not be right.
+   }
+   public Moneda getVuelto(){
+       return vuelto.getMoneda();
    }
 }
