@@ -2,14 +2,14 @@
 package tarea2.progra2;
 
 public abstract class Moneda {
-   public Moneda() {}
-   public abstract int getValor();
+  public Moneda() {}
+  public abstract int getValor();
 
-   public int getSerie() {
-      return this.hashCode();
-   }
-   public String toString() {
-      return "Moneda: {\n\tSerie: "+this.getSerie()+"\n\tValor: "+this.getValor()+"\n}\n";
+  public int getSerie() {
+    return this.hashCode();
+  }
+  public String toString() {
+    return "Moneda: {\n\tSerie: "+this.getSerie()+"\n\tValor: "+this.getValor()+"\n}\n";
    }
 }
 class Moneda1000 extends Moneda {

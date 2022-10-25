@@ -3,6 +3,7 @@ package tarea2.progra2;
 import java.util.ArrayList;
 import tarea2.progra2.exceptions.PagoIncorrectoException;
 import tarea2.progra2.exceptions.NoHayBebidaException;
+import tarea2.progra2.exceptions.PagoInsuficienteException;
 
 public class Expendedor {
    int precios[];
@@ -39,24 +40,32 @@ public class Expendedor {
          else if (m.getValor() >= precios[tipo]) {
             Bebida b = depositos.get(tipo).getBebida();
             if (b == null || tipo < 0 || 2 < tipo) {
+               vuelto.addMoneda(m);
                throw new NoHayBebidaException();
             }
-            Moneda c = new Moneda100();
+            Moneda c;
             for (int i=precios[tipo]/100; i<m.getValor()/100; i++){
-                vuelto.addMoneda(c);
+               c = new Moneda100();
+               vuelto.addMoneda(c);
             }
             return b;
          }
          else if (m.getValor() < precios[tipo]) {
-            throw new NoHayBebidaException();
+            vuelto.addMoneda(m);
+            throw new PagoInsuficienteException();
          }
          return null;
       }
       catch (PagoIncorrectoException ex) {
+         System.out.println("Pago Incorrecto");
+         return null;
+      }
+      catch (PagoInsuficienteException ex) {
+         System.out.println("Pago Insufuciente");
          return null;
       }
       catch (NoHayBebidaException ex) {
-         System.out.println("No Hay Bebida LoL");
+         System.out.println("No Hay Bebida");
          return null;
       }
    }
