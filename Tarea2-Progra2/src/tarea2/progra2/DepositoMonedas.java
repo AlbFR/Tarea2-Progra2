@@ -2,10 +2,10 @@ package tarea2.progra2;
 import java.util.ArrayList;
 
 public class DepositoMonedas{
-    private final ArrayList<Moneda> a;
+    private ArrayList<Moneda> a;
 
     public DepositoMonedas(){
-        a = new ArrayList();
+        a = new ArrayList<Moneda>();
     }
 
     public void addMoneda(Moneda b){

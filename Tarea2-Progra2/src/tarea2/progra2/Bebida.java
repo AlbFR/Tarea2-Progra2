@@ -2,8 +2,8 @@ package tarea2.progra2;
 
 public abstract class Bebida {
     private int serie;
-    public Bebida(int a) {
-        serie = a;
+    public Bebida(int serie) {
+        this.serie = serie;
     }
     public int getSerie() {
         return serie;
@@ -14,8 +14,8 @@ public abstract class Bebida {
 }
 
 class Sprite extends Bebida{
-    public Sprite(int a){
-        super(a);
+    public Sprite(int serie){
+        super(serie);
     }
     @Override
     public String beber(){
@@ -23,8 +23,8 @@ class Sprite extends Bebida{
     }
 }
 class Fanta extends Bebida{
-    public Fanta(int a){
-        super(a);
+    public Fanta(int serie){
+        super(serie);
     }
     @Override
     public String beber(){
@@ -32,8 +32,8 @@ class Fanta extends Bebida{
     }
 }
 class CocaCola extends Bebida{
-    public CocaCola(int a){
-        super(a);
+    public CocaCola(int serie){
+        super(serie);
     }
     @Override
     public String beber(){
