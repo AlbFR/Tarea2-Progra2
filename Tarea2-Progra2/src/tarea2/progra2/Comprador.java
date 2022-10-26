@@ -6,13 +6,18 @@ public class Comprador {
    public Comprador(Moneda m, int tipo, Expendedor exp) {
       Bebida b = exp.atender(m, tipo);
       if (b != null) {
-         sabor = b.beber();
-         vuelto = 0;
+         this.sabor = b.beber();
+         this.vuelto = 0;
          Moneda c = exp.getVuelto();
          while (c != null) {
             vuelto += c.getValor();
             c = exp.getVuelto();
          }
+      }
+      else {
+         Moneda m1 = exp.getVuelto();
+         if (m1 != null)
+            this.vuelto = m1.getValor();
       }
    }
    public String getSabor() {

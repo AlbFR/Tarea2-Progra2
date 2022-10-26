@@ -24,9 +24,9 @@ public class Expendedor {
             if (i==0)
                b = new CocaCola(i*j + j);
             else if (i==1)
-               b = new Fanta(i*j + j);
-            else if (i==2)
                b = new Sprite(i*j + j);
+            else if (i==2)
+               b = new Fanta(i*j + j);
             d.addBebida(b);
          }
          depositos.add(d);
@@ -37,9 +37,13 @@ public class Expendedor {
          if (m == null) {
             throw new PagoIncorrectoException();
          }
+         else if (tipo < 0 || 2 < tipo) {
+            vuelto.addMoneda(m);
+            throw new NoHayBebidaException();
+         }
          else if (m.getValor() >= precios[tipo]) {
             Bebida b = depositos.get(tipo).getBebida();
-            if (b == null || tipo < 0 || 2 < tipo) {
+            if (b == null) {
                vuelto.addMoneda(m);
                throw new NoHayBebidaException();
             }
@@ -57,15 +61,15 @@ public class Expendedor {
          return null;
       }
       catch (PagoIncorrectoException ex) {
-         System.out.println("Pago Incorrecto");
+         System.out.println(ex.getMessage());
          return null;
       }
       catch (PagoInsuficienteException ex) {
-         System.out.println("Pago Insufuciente");
+         System.out.println(ex.getMessage());
          return null;
       }
       catch (NoHayBebidaException ex) {
-         System.out.println("No Hay Bebida");
+         System.out.println(ex.getMessage());
          return null;
       }
    }
